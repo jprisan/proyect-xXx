@@ -1,10 +1,9 @@
 //Cuandxo se carge la pantalla genero nuevos objetos, despues llamo a sus funciones
 // de dibujado. Si quiero crear 100 enemigos solo tendre que llamar a la función 100 veces
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var ctx
 
 var mine = new Mine(100, 30)
-var player = new Uboat(300,300,1,1)
+var player = new Uboat(300,300,15,15)
 
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
@@ -18,35 +17,50 @@ window.requestAnimFrame = (function () {
 })();
 
 window.onload = function() {
+    ctx = document.getElementById("canvas").getContext("2d");
     mine.draw();
     player.draw();
-    
+   
+
     
     
     function update (){
-        console.log("ENTRO EN UPDATE")
-        
-        console.log(mine.vy)
         mine.y += mine.vy
         mine.draw();
         player.draw()
         mine.collisionDetection();
+        
         ctx.clearRect(0,0, canvas.width, canvas.height);
-       
+        player.collisionDown();
+       // player.collisionLeft();
     }   
     
     setInterval(update, 30)
 
 
-    uboat.moveRigth();
-    uboat.moveLeft();
-    uboat.moveUp();
-    uboat.moveDown();
+   
+    
    
 }
-
-
-
+document.addEventListener('keydown', (event) => {
+    
+    var keyName = event.keyCode;
+    switch (keyName){
+        case 65:
+        player.moveRigth();
+        break;
+        case 83:
+        player.moveDown();
+        break;
+        case 68:
+        player.moveLeft();
+        break;
+        case 87:
+        player.moveUp();
+        break;
+    }
+  });
+ 
 
 
 
