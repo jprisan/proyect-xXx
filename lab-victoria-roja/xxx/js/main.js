@@ -6,21 +6,43 @@ var ctx = canvas.getContext("2d");
 var mine = new Mine(100, 30)
 var player = new Uboat(300,300,1,1)
 
+window.requestAnimFrame = (function () {
+    return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame  ||
+    window.mozRequestAnimationFrame     ||
+    window.oRequestAnimationFrame       ||
+    window.msRequestAnimationFrame      ||
+    function ( /* function */ callback, /* DOMElement */ element) {
+        window.setTimeout(callback, 1000 / 60);
+    };
+})();
 
 window.onload = function() {
     mine.draw();
-    player.draw()
-    console.log("PLAYER", player)
+    player.draw();
+    
+    
     
     function update (){
         console.log("ENTRO EN UPDATE")
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        
         console.log(mine.vy)
         mine.y += mine.vy
         mine.draw();
+        player.draw()
+        mine.collisionDetection();
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+       
     }   
     
     setInterval(update, 30)
+
+
+    uboat.moveRigth();
+    uboat.moveLeft();
+    uboat.moveUp();
+    uboat.moveDown();
+   
 }
 
 
