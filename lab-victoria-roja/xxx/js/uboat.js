@@ -1,14 +1,33 @@
-function Enemy(enemy, _x, _y) {
-    enemy = new Image();
-    enemy.src = 'images/enemy.png'; //128x128
-    enemy.posX = canvas.width - enemy.width;
-    enemy.posY = canvas.height / 2 - enemy.width / 2;
-    enemy.life = 5; //5 hits
-    enemy.backToLife = function () {
-        this.life = 5;
-        this.posY = Math.floor(Math.random() * (canvas.height - this.height));
-        this.posX = Math.floor(Math.random() * (canvas.width - this.width - player.width))
-                    + player.width;
-    }
-    return enemy;
+var Uboat = function (x,y,vx,vy) {
+    this.x = x
+    this.y = y
+    this.vx = vx
+    this.vy = vy
+};
+
+Uboat.prototype.draw = function () {
+    var that = this
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var img = new Image();
+    img.src = "./images/player.svg.png";
+    img.onload = function(){
+        ctx.drawImage(img, that.x, that.y);
+      }
+}
+
+Uboat.prototype.moveRigth = function(e) {
+    
+}
+
+Uboat.prototype.moveLeft = function(e) {
+    
+}
+
+Uboat.prototype.moveUp = function(e) {
+    
+}
+
+Uboat.prototype.moveDown = function(e) {
+    
 }

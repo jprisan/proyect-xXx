@@ -1,18 +1,91 @@
-var board = new GameMap();
-var mine = new NewMine();
-//var boat = new NewBoat();
-//var uboat = new NewUboat();
+//Cuandxo se carge la pantalla genero nuevos objetos, despues llamo a sus funciones
+// de dibujado. Si quiero crear 100 enemigos solo tendre que llamar a la función 100 veces
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
 
-window.onload = function () {
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext('2d');
+var mine = new Mine(100, 30)
+var player = new Uboat(300,300,1,1)
 
-    mine = function () {
-        var img = new Image();
-        img.onload = function () {
-            ctx.drawImage(img, 25, 400, 50, 50);
-        }.bind(this)
-        img.src = "../images/mina.png";
-    };
+
+window.onload = function() {
+    mine.draw();
+    player.draw()
+    console.log("PLAYER", player)
     
-};
+    function update (){
+        console.log("ENTRO EN UPDATE")
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        console.log(mine.vy)
+        mine.y += mine.vy
+        mine.draw();
+    }   
+    
+    setInterval(update, 30)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var gravity =  0.05
+// var canvas = document.getElementById('canvas')
+// var ctx = canvas.getContext('2d');
+// var ball = {
+//   x: 200,
+//   y: 30,
+//   vx: 0,
+//   vy: 2,
+//   userPull: 0, // LA FUERZA (ACELERACIÓN) DE CONTRAPARTIDA POR EL USUARIO
+//   radius: 22,
+//   color: "white",
+//   draw: function() {
+//     ctx.beginPath();
+//     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+//     ctx.closePath();
+//     ctx.fillStyle = this.color;
+//     ctx.fill();
+//   }
+// };
+
+// function update() {
+//   hitBottom(); // LO PRIMERO DE TODO COMPROBAR SI LA PELOTA SE HA CHOCADO
+//   ctx.clearRect(0,0, canvas.width, canvas.height);
+//   ball.vy = ball.vy + (gravity - ball.userPull); // MODIFICA EL EFECTO GRAVEDAD EN FUNCIÓN
+//   ball.y += ball.vy;                             // DEL EVENTO DE PULSACIÓN DE TECLA
+//   console.log(ball.vy, ball.y)
+//   ball.x += ball.vx
+//   ball.draw()
+// }
+
+// function hitBottom () {
+//   var rockbottom = canvas.height - ball.radius; //LIMITE DE CHOQUE DE LA BOLA
+//     if (ball.y > rockbottom) {
+//       ball.y = rockbottom; // DESTROZO EL VALOR DE Y
+//       clearInterval(intervalId); // IMPIDO LA ACTUALIZACIÓN DE JUEGO
+//       //alert("Looooser!!!"); // MENSAJE MOTIVADOR
+//     }
+//   }
+
+// var intervalId = setInterval(update, 20);
+
+// document.onkeydown = function(e) {
+//   if(e.keyCode == 32){
+//     ball.userPull = 0.3;
+//   }           
+// }
+
+// document.onkeyup = function(e) {
+//   if (e.keyCode == 32) {
+//     ball.userPull = 0;
+//   }
+// }; 
