@@ -39,3 +39,4 @@ Uboat.prototype.collisionDown = function () {
         this.y = collision;
     }
 }
+
