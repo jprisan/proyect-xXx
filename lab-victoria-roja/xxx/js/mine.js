@@ -1,19 +1,20 @@
-function Mine(x, damage) {
+function Mine(x) {
     this.x = x
     this.y = 190
     this.vy = 2
     this.live = true
     this.damage = 5
+    this.img = new Image();
 }
 
 Mine.prototype.draw = function () {
     var that = this
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    var img = new Image();
-    img.src = "./images/mine.png";
-    img.onload = function () {
-        ctx.drawImage(img, that.x, that.y);
+    //var img = new Image(); --> this.img
+    this.img.src = "./images/mine.png";
+    this.img.onload = function () {
+        ctx.drawImage(that.img, that.x, that.y);
     }
 }
 
@@ -27,4 +28,8 @@ Mine.prototype.collisionDetection = function () {
         this.y = collision;
         this.live = false
     }
+}
+
+Mine.prototype.updateDraw = function(){
+    ctx.drawImage(this.img, this.x, this.y);
 }

@@ -4,16 +4,17 @@ var Uboat = function (x, y, vx, vy) {
     this.vx = vx
     this.vy = vy
     this.friction = 0.98
+    this.img = new Image();
+
 };
 
 Uboat.prototype.draw = function () {
     var that = this
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    var img = new Image();
-    img.src = "./images/player.png";
-    img.onload = function () {
-        ctx.drawImage(img, that.x, that.y);
+    this.img.src = "./images/player.png";
+    this.img.onload = function () {
+        ctx.drawImage(that.img, that.x, that.y);
     }
 }
 
@@ -40,3 +41,6 @@ Uboat.prototype.collisionDown = function () {
     }
 }
 
+Uboat.prototype.updateDraw = function (){
+    ctx.drawImage(this.img, this.x, this.y);
+}
