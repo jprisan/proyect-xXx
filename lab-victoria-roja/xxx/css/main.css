@@ -4,7 +4,7 @@ img {
 }
 
 canvas {
-    background : blue;
+    background-image: url("../images/fondo.jpg");
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;

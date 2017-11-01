@@ -3,7 +3,7 @@ var Uboat = function (x, y, vx, vy) {
     this.y = y
     this.vx = vx
     this.vy = vy
-
+    this.friction = 0.98
 };
 
 Uboat.prototype.draw = function () {
@@ -18,40 +18,24 @@ Uboat.prototype.draw = function () {
 }
 
 Uboat.prototype.moveRigth = function () {
-    this.x -= this.vx 
+    this.x += this.vx
 }
 
 Uboat.prototype.moveLeft = function () {
-    this.x += this.vx 
+    this.x -= this.vx
 }
 
 Uboat.prototype.moveUp = function () {
-    this.y -= this.vy 
+    this.y -= this.vy
 }
 
 Uboat.prototype.moveDown = function () {
-    this.y += this.vy 
+    this.y += this.vy
 }
 
 Uboat.prototype.collisionDown = function () {
     var collision = canvas.height - 50;
     if (this.y > collision) {
         this.y = collision;
-        //  var collisionla
     }
 }
-// Uboat.prototype.collisionLeft = function (){
-//     var ballRadius = 10;
-// var that = this
-//     ctx.arc(that.x, that.y, ballRadius, 0, Math.PI*2);
-//     if(that.y + dy > canvas.height || y + dy < 0) {
-//         dy = -dy;
-//     }
-//     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-//         dx = -dx;
-//     }
-//     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-//         dy = -dy;
-//     }
-// }
-

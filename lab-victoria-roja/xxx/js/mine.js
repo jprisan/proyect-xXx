@@ -1,8 +1,8 @@
-function Mine(x, live, damage) {
+function Mine(x, damage) {
     this.x = x
-    this.y = 10
-    this.vy = 3
-    this.live = live
+    this.y = 190
+    this.vy = 2
+    this.live = true
     this.damage = 5
 }
 
@@ -25,5 +25,6 @@ Mine.prototype.collisionDetection = function () {
     var collision = canvas.height - 20;
     if (this.y > collision) {
         this.y = collision;
+        this.live = false
     }
 }
