@@ -1,10 +1,11 @@
 function GunEnemy(x, y, damage) {
     this.x = x
     this.y = y
-    this.vy = 5
+    this.vy = 4
     this.live = true
     this.damage = 1
     this.img = new Image();
+    this.health = 1
 }
 
 
@@ -25,7 +26,12 @@ GunEnemy.prototype.updateDraw = function (){
 }
 
 GunEnemy.prototype.collisionDetection = function () {
-    if (this.x > 800) {
+    console.log()
+    if (this.x < -10) {
         this.live = false
+    }
+    if ((player.y  -5 < this.y) && (this.y < player.y + 40) && (player.x - 0 < this.x) && (this.x < player.x + 80)) {
+        this.live = false
+        player.health -= 1;
     }
 }

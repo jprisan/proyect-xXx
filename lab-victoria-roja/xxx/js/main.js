@@ -1,3 +1,4 @@
+//Declaracion de Objetos
 var player = new Uboat(300, 300, 16, 16)
 var ship = new Boat(0)
 var minesArray = [];
@@ -5,7 +6,7 @@ var enemyArray = [];
 var torpedoArray = [];
 var fireArray = [];
 
-
+//Carga del Juego
 window.onload = function () {
     var canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
@@ -14,7 +15,7 @@ window.onload = function () {
     player.draw();
     ship.draw();
 
-
+    //Refresco de los objetos
     function update() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ship.updateDraw();
@@ -40,6 +41,8 @@ window.onload = function () {
     var width = $("#canvas").width;
     var height = $("#canvas").height;
 }
+
+// Identificacion de Movimiento
 document.addEventListener('keydown', (event) => {
 
     var keyName = event.keyCode;
@@ -124,7 +127,7 @@ function enemyUpdate() {
                 enemyArray.splice(i, 1);
             }
             if (torpedoArray.length < 5) {
-                torpedoCreator(enemyArray[i].x, (enemyArray[i].y) + 30);
+                torpedoCreator((enemyArray[i].x), (enemyArray[i].y) + 30);
             }
         }
     }
@@ -140,6 +143,7 @@ function torpedoCreator(x, y) {
         torpedoArray.push(new GunEnemy(x, y))
         for (i = 0; i < torpedoArray.length; i++) {
             torpedoArray[i].draw()
+           
         }
     }
 }
@@ -147,6 +151,7 @@ function torpedoCreator(x, y) {
 function torpedoUpdate() {
     if (torpedoArray.length >= 1) {
         for (i = 0; i < torpedoArray.length; i++) {
+            console.log(torpedoArray.length)
             torpedoArray[i].updateDraw();
             torpedoArray[i].collisionDetection();
             torpedoArray[i].move();
@@ -166,10 +171,6 @@ function fireCreator(x, y) {
         fireArray.push(new Gun(player.x + 50, player.y + 30))
         fireArray[0].draw()
     }
-    // console.log("Fire Creator")
-    // var control = fireArray.length - 1;
-    // for(var i = 0; i<fireArray.length; i++){
-    // }
 }
 
 function fireUpdate() {
@@ -182,4 +183,3 @@ function fireUpdate() {
 }
 
 
-// Colision

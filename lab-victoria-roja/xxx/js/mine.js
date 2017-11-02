@@ -35,13 +35,10 @@ Mine.prototype.updateDraw = function () {
 }
 
 Mine.prototype.explote = function () {
-    console.log(this.y, player.y)
 
-    if ((player.x-60 < this.x) && (this.x < player.x+100) && (this.y == player.y)){
+    if ((player.x - 30 < this.x) && (this.x < player.x + 80) && (this.y == player.y)) {
         console.log("ENTRO")
+        this.live = false
+        player.health -= 1;
     }
-    
-    //     this.live = false
-    //     player.health -= 1;
-    // }
 }
