@@ -34,4 +34,7 @@ GunEnemy.prototype.collisionDetection = function () {
         this.live = false
         player.health -= 1;
     }
+    if ((fireArray.y  -5 < this.y) && (this.y < fireArray.y + 40) && (fireArray.x - 0 < this.x) && (this.x < fireArray.x + 80)) {
+        this.live = false
+    }
 }

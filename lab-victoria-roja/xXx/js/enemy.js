@@ -33,7 +33,7 @@ Enemy.prototype.collisionDetection = function () {
     if (this.x < -100) {
         this.live = false
     }
-    if ((player.y  - 10 < this.y) && (this.y < player.y + 50) && (player.x - 5 < this.x) && (this.x < player.x + 90)) {
+    if ((player.y  - 40 < this.y) && (this.y < player.y + 50) && (player.x - 5 < this.x) && (this.x < player.x + 90)) {
         this.live = false
         player.health -= 1;
     }
