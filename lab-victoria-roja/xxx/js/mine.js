@@ -33,3 +33,14 @@ Mine.prototype.collisionDetection = function () {
 Mine.prototype.updateDraw = function(){
     ctx.drawImage(this.img, this.x, this.y);
 }
+
+Mine.prototype.explote = function(){
+    if ((this.x  >= player.x) && (this.x <= (this.x + player.x)) &&
+    (this.y >= player.y) && (this.y <= (player.y + player.y))){
+       this.live = false
+       player.health -= 1;
+    }
+
+}
+
+

@@ -25,7 +25,7 @@ GunEnemy.prototype.updateDraw = function (){
 }
 
 GunEnemy.prototype.collisionDetection = function () {
-    if (this.x < -100) {
+    if (this.x > 800) {
         this.live = false
     }
 }

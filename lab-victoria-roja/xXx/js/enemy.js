@@ -22,7 +22,6 @@ Enemy.prototype.draw = function () {
 }
 
 Enemy.prototype.updateDraw = function (){
-    console.log(this.x)
     ctx.drawImage(this.img, this.x, this.y);
 }
 

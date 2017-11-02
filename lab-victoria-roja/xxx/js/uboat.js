@@ -5,6 +5,7 @@ var Uboat = function (x, y, vx, vy) {
     this.vy = vy
     this.friction = 0.98
     this.img = new Image();
+    this.health = 20;
 
 };
 
@@ -44,3 +45,11 @@ Uboat.prototype.collisionDown = function () {
 Uboat.prototype.updateDraw = function (){
     ctx.drawImage(this.img, this.x, this.y);
 }
+Uboat.prototype.fire = function () {
+    console.log("FIRE")
+}
+
+
+
+ 
+
