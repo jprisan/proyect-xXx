@@ -1,10 +1,11 @@
-//var mine = new Mine(100, 30)
+
 var player = new Uboat(300, 300, 15, 15)
 var ship = new Boat(0)
-var enemy = new Enemy()
-var torpedo = new GunEnemy()
+//var enemy = new Enemy()
+//var torpedo = new GunEnemy()
 var minesArray = [];
 var enemyArray = [];
+var torpedoArray =[]; 
 
 window.onload = function () {
     var canvas = document.getElementById("canvas");
@@ -14,29 +15,33 @@ window.onload = function () {
     player.draw();
     ship.draw();
     
-    torpedo.draw()
+    //torpedo.draw()
 
 
 
     function update() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-       // enemy.updateDraw();
-       // enemy.move();
+        // enemy.move();
         if(minesArray.length == 0){
             minesCreator();
         }
-        if(enemyArray.length == 0){
+        if(enemyArray.length < 3){
             enemyCreator();
         }
+        if(torpedoArray.length == 0){
+            //torpedoCreator();
+        }
         ship.mov(canvas);
-        torpedo.move();
+        //torpedo.move();
         //ship.x += ship.vx
         player.collisionDown();
         ship.updateDraw();
         player.updateDraw()
-        torpedo.updateDraw();
-        mineUpdate()
-        enemyUpdate()
+        //enemy.updateDraw();
+        //torpedo.updateDraw();
+        mineUpdate();
+        enemyUpdate();
+        //torpedoUpdate();
         
     }
 
@@ -67,7 +72,7 @@ document.addEventListener('keydown', (event) => {
             break;
     }
 });
-
+// Creador de Minas
 function minesCreator() {
     var prob = Math.random() * (100 - 0);
     if(prob > 99){
@@ -88,11 +93,15 @@ function mineUpdate(){
         }
     }
 }
+
+//Creador de Enemigos
 function enemyCreator() {
     var prob = Math.random() * (100 - 0);
-    if(prob > 99){
-        enemyArray.push(new Enemy)
-        enemyArray[0].draw();
+    if(prob > 98){
+        enemyArray.push(new Enemy())
+        for(i=0; i<enemyArray.length; i++){
+            enemyArray[i].draw()
+        }
     }
 }
 
@@ -102,8 +111,32 @@ function enemyUpdate(){
             enemyArray[i].updateDraw();
             enemyArray[i].move();
             enemyArray[i].collisionDetection();
-            if(enemyArray[i].live == false){
+            //enemyArray[i].randomY();
+
+             if(enemyArray[0].live == false){
                 enemyArray.splice(i,1);
+             }
+        }
+    }
+}
+
+// Creador de Torpedos Enemigos
+function torpedoCreator() {
+    var prob = Math.random() * (100 - 0);
+    if(prob > 99){
+        torpedoArray.push(new GunEnemy())
+        torpedoArray[0].draw();
+    }
+}
+
+function torpedoUpdate(){
+    if(torpedoArray.length >= 1){
+        for(i=0; i<torpedoArray.length; i++){
+            torpedoArray[i].updateDraw();
+            //torpedoArray[i].collisionDetection();
+            torpedoArray[i].move();
+            if(torpedoArray[i].live == false){
+                torpedoArray.splice(i,1);
             }
         }
     }

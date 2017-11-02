@@ -1,7 +1,7 @@
-function Enemy(x, y, damage) {
+function Enemy(x, damage) {
     this.x = 1100
     this.y = this.randomY()
-    this.vy = 1
+    this.vy = 2
     this.live = true
     this.damage = 3
     this.img = new Image();
@@ -22,16 +22,16 @@ Enemy.prototype.draw = function () {
 }
 
 Enemy.prototype.updateDraw = function (){
+    console.log(this.x)
     ctx.drawImage(this.img, this.x, this.y);
 }
 
 Enemy.prototype.randomY = function () {
-    return Math.random() * ((800 - 240) + 200)
+    return Math.floor(Math.random() * (500 - 250)) + 250
 }
+
 Enemy.prototype.collisionDetection = function () {
-    
-    if (this.x < canvas.heigth) {
-        this.x = -20;
+    if (this.x < -100) {
         this.live = false
     }
 }
