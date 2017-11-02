@@ -42,14 +42,9 @@ Uboat.prototype.collisionDown = function () {
     }
 }
 
-Uboat.prototype.updateDraw = function (){
+Uboat.prototype.updateDraw = function () {
     ctx.drawImage(this.img, this.x, this.y);
 }
 Uboat.prototype.fire = function () {
     console.log("FIRE")
 }
-
-
-
- 
-

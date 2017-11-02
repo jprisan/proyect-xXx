@@ -1,10 +1,10 @@
-var player = new Uboat(300, 300, 15, 15)
+var player = new Uboat(300, 300, 16, 16)
 var ship = new Boat(0)
 var minesArray = [];
 var enemyArray = [];
 var torpedoArray = [];
 var fireArray = [];
-var 
+
 
 window.onload = function () {
     var canvas = document.getElementById("canvas");
@@ -33,7 +33,7 @@ window.onload = function () {
         if (fireArray[0]) {
             fireUpdate();
         }
-       
+
     }
 
     setInterval(update, 1000 / 60)
@@ -183,4 +183,3 @@ function fireUpdate() {
 
 
 // Colision
-
