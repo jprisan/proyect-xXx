@@ -21,15 +21,11 @@ window.onload = function () {
 
     function update() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // enemy.move();
         if(minesArray.length == 0){
             minesCreator();
         }
         if(enemyArray.length < 3){
             enemyCreator();
-        }
-        if(torpedoArray.length == 0){
-            //torpedoCreator();
         }
         ship.mov(canvas);
         //torpedo.move();
@@ -37,11 +33,10 @@ window.onload = function () {
         player.collisionDown();
         ship.updateDraw();
         player.updateDraw()
-        //enemy.updateDraw();
         //torpedo.updateDraw();
         mineUpdate();
         enemyUpdate();
-        //torpedoUpdate();
+        torpedoUpdate();
         
     }
 
@@ -108,12 +103,13 @@ function enemyCreator() {
 function enemyUpdate(){
     if(enemyArray.length >= 1){
         for(i=0; i<enemyArray.length; i++){
+            if(torpedoArray.length < 5){
+                torpedoCreator(enemyArray[i].x, (enemyArray[i].y)+30);
+            }
             enemyArray[i].updateDraw();
             enemyArray[i].move();
             enemyArray[i].collisionDetection();
-            //enemyArray[i].randomY();
-
-             if(enemyArray[0].live == false){
+             if(enemyArray[i].live == false){
                 enemyArray.splice(i,1);
              }
         }
@@ -121,11 +117,13 @@ function enemyUpdate(){
 }
 
 // Creador de Torpedos Enemigos
-function torpedoCreator() {
+function torpedoCreator(x, y) {
     var prob = Math.random() * (100 - 0);
     if(prob > 99){
-        torpedoArray.push(new GunEnemy())
-        torpedoArray[0].draw();
+        torpedoArray.push(new GunEnemy(x, y))
+        for(i=0; i<torpedoArray.length; i++){
+            torpedoArray[i].draw()
+        }
     }
 }
 
@@ -133,7 +131,7 @@ function torpedoUpdate(){
     if(torpedoArray.length >= 1){
         for(i=0; i<torpedoArray.length; i++){
             torpedoArray[i].updateDraw();
-            //torpedoArray[i].collisionDetection();
+            torpedoArray[i].collisionDetection();
             torpedoArray[i].move();
             if(torpedoArray[i].live == false){
                 torpedoArray.splice(i,1);

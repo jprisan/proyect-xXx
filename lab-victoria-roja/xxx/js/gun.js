@@ -1,7 +1,7 @@
 function GunEnemy(x, y, damage) {
-    this.x = canvas.height + 300
-    this.y = 300
-    this.vy = 2
+    this.x = x
+    this.y = y
+    this.vy = 5
     this.live = true
     this.damage = 1
     this.img = new Image();
@@ -22,4 +22,10 @@ GunEnemy.prototype.draw = function () {
 }
 GunEnemy.prototype.updateDraw = function (){
     ctx.drawImage(this.img, this.x, this.y);
+}
+
+GunEnemy.prototype.collisionDetection = function () {
+    if (this.x < -100) {
+        this.live = false
+    }
 }
